@@ -1,8 +1,0 @@
-name = Markdown
-type = module
-description = "Provides APIs and services to parse Markdown, a simple plain-text syntax, into valid HTML."
-package = "Markdown"
-core = 7.x
-php = 5.5.9
-
-dependencies[] = backport
