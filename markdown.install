@@ -56,6 +56,18 @@ function markdown_requirements($phase) {
       $containerNamespaces->offsetSet('Drupal\\markdown', str_replace(\Drupal::root() . '/', '', $src));
     }
 
+    // Adds services that are not available yet, but are required by the classes
+    // above. The container rebuild after module installation should reset these
+    // to what is defined in markdown.services.yml.
+    if (!\Drupal::hasService('logger.channel.markdown')) {
+      $markdownLogger = \Drupal::service('logger.factory')->get('markdown');
+      \Drupal::getContainer()->set('logger.channel.markdown', $markdownLogger);
+    }
+    if (!\Drupal::hasService('cache.markdown')) {
+      $markdownCache = \Drupal::service('cache_factory')->get('markdown');
+      \Drupal::getContainer()->set('cache.markdown', $markdownCache);
+    }
+
     $parserManager = ParserManager::create();
   }
 

@@ -23,7 +23,7 @@
   "minimum-stability": "dev",
   "require": {
     "php": ">=5.5.9",
-    "composer/semver": "^1.0 || ^2.0"
+    "composer/semver": "^1.0 || ^2.0 || ^3.0"
   },
   "suggest": {
     "league/commonmark": "The PHP CommonMark parser is a robust, highly-extensible Markdown parser for PHP based on the CommonMark and Github-Flavored Markdown specifications."

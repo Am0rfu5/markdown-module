@@ -11,6 +11,7 @@ use Drupal\Core\Config\TypedConfigManagerInterface;
 use Drupal\Core\Form\EnforcedResponseException;
 use Drupal\Core\Form\FormBase;
 use Drupal\Core\Form\FormStateInterface;
+use Drupal\Core\Messenger\MessengerInterface;
 use Drupal\Core\Plugin\PluginDependencyTrait;
 use Drupal\Core\Plugin\PluginFormInterface;
 use Drupal\Core\Render\Element;
@@ -86,13 +87,16 @@ class ParserConfigurationForm extends FormBase implements FilterAwareInterface, 
    *   The Element Info Plugin Manager service.
    * @param \Drupal\markdown\PluginManager\ParserManagerInterface $parserManager
    *   The Markdown Parser Plugin Manager service.
+   * @param \Drupal\Core\Messenger\MessengerInterface $messenger
+   *   The Drupal messenger service.
    */
-  public function __construct(ConfigFactoryInterface $configFactory, TypedConfigManagerInterface $typedConfigManager, CacheTagsInvalidatorInterface $cacheTagsInvalidator, ElementInfoManagerInterface $elementInfo, ParserManagerInterface $parserManager) {
+  public function __construct(ConfigFactoryInterface $configFactory, TypedConfigManagerInterface $typedConfigManager, CacheTagsInvalidatorInterface $cacheTagsInvalidator, ElementInfoManagerInterface $elementInfo, ParserManagerInterface $parserManager, MessengerInterface $messenger) {
     $this->configFactory = $configFactory;
     $this->cacheTagsInvalidator = $cacheTagsInvalidator;
     $this->elementInfo = $elementInfo;
     $this->parserManager = $parserManager;
     $this->typedConfigManager = $typedConfigManager;
+    $this->messenger = $messenger;
   }
 
   /**
@@ -107,7 +111,8 @@ class ParserConfigurationForm extends FormBase implements FilterAwareInterface, 
       $container->get('config.typed'),
       $container->get('cache_tags.invalidator'),
       $container->get('plugin.manager.element_info'),
-      $container->get('plugin.manager.markdown.parser')
+      $container->get('plugin.manager.markdown.parser'),
+      $container->get('messenger')
     );
   }
 
@@ -247,7 +252,7 @@ class ParserConfigurationForm extends FormBase implements FilterAwareInterface, 
 
       // If there's no filter associated, show the error after the redirect.
       if (!$this->getFilter()) {
-        $this->messenger()->addError($error);
+        $this->messenger->addError($error);
       }
 
       throw new EnforcedResponseException($this->redirect('markdown.overview'), $error);
@@ -703,7 +708,7 @@ class ParserConfigurationForm extends FormBase implements FilterAwareInterface, 
     // Invalidate any tags associated with the parser.
     $this->cacheTagsInvalidator->invalidateTags(["markdown.parser.$parserId"]);
 
-    drupal_set_message($this->t('The configuration options have been saved.'));
+    $this->messenger->addStatus($this->t('The configuration options have been saved.'));
   }
 
   /**

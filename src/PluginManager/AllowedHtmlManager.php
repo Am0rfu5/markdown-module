@@ -345,7 +345,7 @@ class AllowedHtmlManager extends InstallablePluginManager {
 
     // Only use definitions found in the active theme or its base theme(s).
     if ($activeTheme) {
-      $themeAncestry = array_merge(array_keys($activeTheme->getBaseThemes()), [$activeTheme->getName()]);
+      $themeAncestry = array_merge(array_keys($activeTheme->getBaseThemeExtensions()), [$activeTheme->getName()]);
       foreach ($definitions as $plugin_id => $definition) {
         if (($provider = $definition->getProvider()) && $this->themeHandler->themeExists($provider) && !in_array($provider, $themeAncestry, TRUE)) {
           unset($definitions[$plugin_id]);
