@@ -11,6 +11,7 @@ use Drupal\Core\Plugin\ContainerFactoryPluginInterface;
 use Drupal\Core\Render\ElementInfoManagerInterface;
 use Drupal\Core\Render\Markup;
 use Drupal\Core\Url;
+use Drupal\filter\Annotation\Filter;
 use Drupal\filter\Entity\FilterFormat;
 use Drupal\filter\FilterProcessResult;
 use Drupal\filter\Plugin\FilterBase;
