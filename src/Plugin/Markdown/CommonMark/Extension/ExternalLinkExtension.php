@@ -6,10 +6,8 @@ use Composer\Semver\Semver;
 use Drupal\Core\Form\FormStateInterface;
 use Drupal\Core\Plugin\PluginFormInterface;
 use Drupal\Core\Theme\ActiveTheme;
-use Drupal\Core\Url;
 use Drupal\markdown\Plugin\Markdown\AllowedHtmlInterface;
 use Drupal\markdown\Plugin\Markdown\CommonMark\BaseExtension;
-use Drupal\markdown\Plugin\Markdown\CommonMark\CommonMark;
 use Drupal\markdown\Plugin\Markdown\ParserInterface;
 use Drupal\markdown\Plugin\Markdown\SettingsInterface;
 use Drupal\markdown\Traits\FormTrait;
@@ -64,7 +62,7 @@ class ExternalLinkExtension extends BaseExtension implements AllowedHtmlInterfac
    * {@inheritdoc}
    */
   public static function defaultSettings($pluginDefinition) {
-    /* @var \Drupal\markdown\Annotation\InstallablePlugin $pluginDefinition */
+    /** @var \Drupal\markdown\Annotation\InstallablePlugin $pluginDefinition */
     return [
       'html_class' => '',
       'internal_hosts' => [

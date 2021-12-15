@@ -19,7 +19,6 @@ class Installed extends Exists {
 
   public $name;
 
-
   /**
    * {@inheritdoc}
    */

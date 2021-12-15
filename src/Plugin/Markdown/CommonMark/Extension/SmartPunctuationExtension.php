@@ -55,7 +55,7 @@ class SmartPunctuationExtension extends BaseExtension implements PluginFormInter
    * {@inheritdoc}
    */
   public static function defaultSettings($pluginDefinition) {
-    /* @var \Drupal\markdown\Annotation\InstallablePlugin $pluginDefinition */
+    /** @var \Drupal\markdown\Annotation\InstallablePlugin $pluginDefinition */
 
     // Older versions of the deprecated extension didn't have settings.
     if (!static::featureExists('settings')) {

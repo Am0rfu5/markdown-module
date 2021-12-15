@@ -2,6 +2,7 @@
 
 namespace Drupal\markdown\Commands;
 
+use Drush\Drush;
 use Drupal\Component\Serialization\Json;
 use Drupal\Component\Utility\Crypt;
 use Drupal\Core\DependencyInjection\ContainerInjectionInterface;
@@ -120,7 +121,7 @@ class MarkdownCommands extends DrushCommands implements ContainerInjectionInterf
     }
     return new static(
       $container->get('file_system'),
-      method_exists('\\Drush\\Drush', 'logger') ? \Drush\Drush::logger() : $container->get('logger.channel.default')
+      method_exists('\\Drush\\Drush', 'logger') ? Drush::logger() : $container->get('logger.channel.default')
     );
   }
 

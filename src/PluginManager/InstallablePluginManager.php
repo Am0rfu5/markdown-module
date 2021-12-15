@@ -13,7 +13,6 @@ use Drupal\markdown\Annotation\InstallablePlugin;
 use Drupal\markdown\Annotation\InstallableLibrary;
 use Drupal\markdown\Annotation\InstallableRequirement;
 use Drupal\markdown\Exception\MarkdownUnexpectedValueException;
-use Drupal\markdown\Plugin\Markdown\InstallablePluginInterface;
 use Drupal\markdown\Traits\NormalizeTrait;
 use Drupal\markdown\Util\Composer;
 use Drupal\markdown\Util\Error;
@@ -215,7 +214,7 @@ abstract class InstallablePluginManager extends DefaultPluginManager implements 
 
     // If this plugin was provided by a Drupal extension that does not exist,
     // remove the plugin definition.
-    /* @var \Drupal\markdown\Annotation\InstallablePlugin $definition */
+    /** @var \Drupal\markdown\Annotation\InstallablePlugin $definition */
     foreach ($definitions as $plugin_id => $definition) {
       if (($provider = $definition->getProvider()) && !in_array($provider, ['core', 'component']) && !$this->providerExists($provider)) {
         unset($definitions[$plugin_id]);
@@ -385,7 +384,7 @@ abstract class InstallablePluginManager extends DefaultPluginManager implements 
       static::$runtimeDefinitions[static::class] = parent::getDefinitions();
 
       // Validate runtime definition requirements.
-      /* @var \Drupal\markdown\Annotation\InstallablePlugin $definition */
+      /** @var \Drupal\markdown\Annotation\InstallablePlugin $definition */
       foreach (static::$runtimeDefinitions[static::class] as $definition) {
         $definition->validate(TRUE);
       }
@@ -404,7 +403,7 @@ abstract class InstallablePluginManager extends DefaultPluginManager implements 
       }
 
       // Re-validate runtime definition requirements after alterations.
-      /* @var \Drupal\markdown\Annotation\InstallablePlugin $definition */
+      /** @var \Drupal\markdown\Annotation\InstallablePlugin $definition */
       foreach (static::$runtimeDefinitions[static::class] as $plugin_id => $definition) {
         $definition->validate(TRUE);
       }
@@ -632,7 +631,7 @@ abstract class InstallablePluginManager extends DefaultPluginManager implements 
           }
         }
       }
-      elseif ($violations !== null) {
+      elseif ($violations !== NULL) {
         $library->version = $versionRequirement->value;
       }
     }

@@ -46,7 +46,7 @@ class HeadingPermalinkExtension extends BaseExtension implements AllowedHtmlInte
    * {@inheritdoc}
    */
   public static function defaultSettings($pluginDefinition) {
-    /* @var \Drupal\markdown\Annotation\InstallablePlugin $pluginDefinition */
+    /** @var \Drupal\markdown\Annotation\InstallablePlugin $pluginDefinition */
 
     $innerContents = '';
     if (defined('\\League\\CommonMark\\Extension\\HeadingPermalink\\HeadingPermalinkRenderer::DEFAULT_INNER_CONTENTS')) {

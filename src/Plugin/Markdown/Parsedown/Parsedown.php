@@ -10,7 +10,6 @@ use Drupal\markdown\Plugin\Markdown\BaseParser;
 use Drupal\markdown\Plugin\Markdown\ParserInterface;
 use Drupal\markdown\Plugin\Markdown\SettingsInterface;
 use Drupal\markdown\Traits\ParserAllowedHtmlTrait;
-use Drupal\markdown\Util\Composer;
 use Drupal\markdown\Util\FilterHtml;
 
 /**
@@ -72,7 +71,7 @@ class Parsedown extends BaseParser implements AllowedHtmlInterface, SettingsInte
    * {@inheritdoc}
    */
   public static function defaultSettings($pluginDefinition) {
-    /* @var \Drupal\markdown\Annotation\InstallablePlugin $pluginDefinition */
+    /** @var \Drupal\markdown\Annotation\InstallablePlugin $pluginDefinition */
     return [
       'breaks_enabled' => FALSE,
       'markup_escaped' => FALSE,

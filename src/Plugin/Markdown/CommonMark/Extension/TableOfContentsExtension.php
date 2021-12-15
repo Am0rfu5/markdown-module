@@ -4,7 +4,6 @@ namespace Drupal\markdown\Plugin\Markdown\CommonMark\Extension;
 
 use Drupal\Core\Form\FormStateInterface;
 use Drupal\Core\Plugin\PluginFormInterface;
-use Drupal\markdown\Annotation\InstallableRequirement;
 use Drupal\markdown\Plugin\Markdown\CommonMark\BaseExtension;
 use Drupal\markdown\Plugin\Markdown\SettingsInterface;
 use Drupal\markdown\Traits\FeatureDetectionTrait;
@@ -46,7 +45,7 @@ class TableOfContentsExtension extends BaseExtension implements PluginFormInterf
    * {@inheritdoc}
    */
   public static function defaultSettings($pluginDefinition) {
-    /* @var \Drupal\markdown\Annotation\InstallablePlugin $pluginDefinition */
+    /** @var \Drupal\markdown\Annotation\InstallablePlugin $pluginDefinition */
 
     $settings = [
       'html_class' => 'table-of-contents',

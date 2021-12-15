@@ -12,7 +12,6 @@ use Drupal\markdown\Plugin\Markdown\AllowedHtmlInterface;
 use Drupal\markdown\Plugin\Markdown\BaseExtensibleParser;
 use Drupal\markdown\Plugin\Markdown\SettingsInterface;
 use Drupal\markdown\Traits\ParserAllowedHtmlTrait;
-use Drupal\markdown\Util\Composer;
 use Drupal\markdown\Util\KeyValuePipeConverter;
 
 /**
@@ -106,7 +105,7 @@ class CommonMark extends BaseExtensibleParser implements AllowedHtmlInterface {
    * {@inheritdoc}
    */
   public static function defaultSettings($pluginDefinition) {
-    /* @var \Drupal\markdown\Annotation\InstallablePlugin $pluginDefinition */
+    /** @var \Drupal\markdown\Annotation\InstallablePlugin $pluginDefinition */
 
     // CommonMark didn't have configuration until 0.6.0.
     if (!$pluginDefinition->version || Semver::satisfies($pluginDefinition->version, '<0.6.0')) {
@@ -395,13 +394,12 @@ class CommonMark extends BaseExtensibleParser implements AllowedHtmlInterface {
 
       $extensions = $this->extensions();
       foreach ($extensions as $extension) {
-        /* @var \Drupal\markdown\Plugin\Markdown\CommonMark\ExtensionInterface $extension */
+        /** @var \Drupal\markdown\Plugin\Markdown\CommonMark\ExtensionInterface $extension */
 
         // Skip disabled extensions.
         if (!$extension->isEnabled()) {
           continue;
         }
-
 
         // Add extension settings.
         if ($extension instanceof SettingsInterface) {

@@ -2,6 +2,8 @@
 
 namespace Drupal\markdown\Plugin\Markdown\CommonMark\Extension;
 
+use CommonMarkExt\Strikethrough\StrikethroughRenderer;
+use CommonMarkExt\Strikethrough\StrikethroughParser;
 use Drupal\Core\Theme\ActiveTheme;
 use Drupal\markdown\Plugin\Markdown\AllowedHtmlInterface;
 use Drupal\markdown\Plugin\Markdown\CommonMark\BaseExtension;
@@ -77,9 +79,9 @@ class StrikethroughExtension extends BaseExtension implements AllowedHtmlInterfa
   public function register($environment) {
     // Support manual uafrica/commonmark-ext implementation.
     if (class_exists('\\CommonMarkExt\\Strikethrough\\StrikethroughParser')) {
-      $environment->addInlineParser(new \CommonMarkExt\Strikethrough\StrikethroughParser());
+      $environment->addInlineParser(new StrikethroughParser());
       if (class_exists('\\CommonMarkExt\\Strikethrough\\StrikethroughRenderer')) {
-        $environment->addInlineRenderer(new \CommonMarkExt\Strikethrough\StrikethroughRenderer());
+        $environment->addInlineRenderer(new StrikethroughRenderer());
       }
       return;
     }

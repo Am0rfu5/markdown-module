@@ -32,10 +32,12 @@ class PeclExtension extends InstallableLibrary {
     if (($info = $this->getPackageInfo()) && !empty($info['dependencies']['required']['php']['min'])) {
       $this->requirements[] = InstallableRequirement::create([
         'value' => PHP_VERSION,
-        'constraints' => ['Version' => [
-          'name' => 'PHP',
-          'value' => '>=' . $info['dependencies']['required']['php']['min'],
-        ]]
+        'constraints' => [
+          'Version' => [
+            'name' => 'PHP',
+            'value' => '>=' . $info['dependencies']['required']['php']['min'],
+          ],
+        ],
       ]);
     }
   }
@@ -129,7 +131,6 @@ class PeclExtension extends InstallableLibrary {
     }
     return $this->packageInfo[$version];
   }
-
 
   /**
    * {@inheritdoc}

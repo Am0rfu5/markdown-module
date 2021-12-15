@@ -391,7 +391,7 @@ class ParserConfigurationForm extends FormBase implements FilterAwareInterface, 
         '#parents' => array_merge($parents, ['extensions', $extensionId]),
       ];
 
-      /* @var array $extensionElement */
+      /** @var array $extensionElement */
       $extensionElement = &$element['extensions'][$extensionId];
       $extensionSubform = SubformState::createForSubform($extensionElement, $element, $form_state);
 

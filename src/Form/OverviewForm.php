@@ -49,7 +49,7 @@ class OverviewForm extends ConfigFormBase {
    *
    * @param \Drupal\Core\Config\ConfigFactoryInterface $config_factory
    *   The Config Factory service.
-   * @param CacheTagsInvalidatorInterface $cacheTagsInvalidator
+   * @param \Drupal\Core\Cache\CacheTagsInvalidatorInterface $cacheTagsInvalidator
    *   The Cache Tags Invalidator service.
    * @param \Drupal\markdown\MarkdownInterface $markdown
    *   The Markdown service.

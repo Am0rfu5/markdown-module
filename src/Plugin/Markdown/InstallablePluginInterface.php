@@ -114,7 +114,7 @@ interface InstallablePluginInterface extends AnnotatedPluginInterface, Dependent
    * @return mixed
    *   A newly instantiated class.
    *
-   * @TODO: Refactor to use variadic parameters.
+   * @todo Refactor to use variadic parameters.
    */
   public function getObject($args = NULL, $_ = NULL);
 

@@ -18,7 +18,6 @@ interface MarkdownInterface extends ContainerInjectionInterface {
    */
   const DOCUMENTATION_URL = 'https://www.drupal.org/docs/contributed-modules/markdown';
 
-
   /**
    * Loads a cached ParsedMarkdown object.
    *

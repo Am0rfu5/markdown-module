@@ -41,7 +41,7 @@ class PhpMarkdownExtra extends PhpMarkdown implements AllowedHtmlInterface {
    * {@inheritdoc}
    */
   public static function defaultSettings($pluginDefinition) {
-    /* @var \Drupal\markdown\Annotation\InstallablePlugin $pluginDefinition */
+    /** @var \Drupal\markdown\Annotation\InstallablePlugin $pluginDefinition */
     return [
       'code_attr_on_pre' => FALSE,
       'code_class_prefix' => '',

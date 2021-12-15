@@ -395,7 +395,7 @@ class AllowedHtmlManager extends InstallablePluginManager {
       return;
     }
 
-    /* @var \Drupal\markdown\Annotation\MarkdownAllowedHtml $definition */
+    /** @var \Drupal\markdown\Annotation\MarkdownAllowedHtml $definition */
     switch ($definition->type) {
       case 'extension':
         if (($extensionRequirement = current($definition->getRequirementsByType('extension'))) && ($extensionDefinition = $this->extensionManager->getDefinition($extensionRequirement->getTypeId()))) {

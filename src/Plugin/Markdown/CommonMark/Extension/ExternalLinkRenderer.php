@@ -49,7 +49,7 @@ class ExternalLinkRenderer implements InlineRendererInterface {
     // Determine which rel attributes to set.
     $rel = [];
     foreach ($options as $type => $option) {
-      switch (true) {
+      switch (TRUE) {
         case $option === 'all':
         case $external && $option === 'external':
         case !$external && $option === 'internal':

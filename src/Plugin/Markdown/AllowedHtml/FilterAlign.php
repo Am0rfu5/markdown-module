@@ -4,7 +4,6 @@ namespace Drupal\markdown\Plugin\Markdown\AllowedHtml;
 
 use Drupal\Core\Plugin\PluginBase;
 use Drupal\Core\Theme\ActiveTheme;
-use Drupal\markdown\Annotation\InstallableRequirement;
 use Drupal\markdown\Plugin\Markdown\AllowedHtmlInterface;
 use Drupal\markdown\Plugin\Markdown\ParserInterface;
 

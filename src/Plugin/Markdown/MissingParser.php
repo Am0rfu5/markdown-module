@@ -2,11 +2,9 @@
 
 namespace Drupal\markdown\Plugin\Markdown;
 
-use Drupal\Core\Annotation\Translation;
 use Drupal\Core\Cache\RefinableCacheableDependencyTrait;
 use Drupal\Core\Language\LanguageInterface;
 use Drupal\Core\Theme\ActiveTheme;
-use Drupal\markdown\Annotation\MarkdownAllowedHtml;
 use Drupal\markdown\Render\ParsedMarkdown;
 use Drupal\markdown\Traits\EnabledPluginTrait;
 use Drupal\markdown\Traits\ParserAllowedHtmlTrait;

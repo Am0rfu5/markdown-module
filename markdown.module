@@ -5,7 +5,6 @@
  * Markdown module.
  */
 
-use Drupal\Component\Render\FormattableMarkup;
 use Drupal\Core\Form\FormStateInterface;
 use Drupal\Core\Render\BubbleableMetadata;
 use Drupal\Core\Render\Element;
@@ -47,7 +46,7 @@ function markdown_filter_format_load($entities) {
     // @see \Drupal\markdown\Plugin\Filter\FilterMarkdown::setConfiguration()
     $currentFilterFormat = &drupal_static(__FUNCTION__);
     $currentFilterFormat = $format;
-    /* @var \Drupal\filter\Plugin\FilterInterface  $filter */
+    /* @var \Drupal\filter\Plugin\FilterInterface $filter */
     foreach ($format->filters() as $id => $filter) {
       if ($filter instanceof FilterFormatAwareInterface) {
         $configuration = $filter->getConfiguration();
@@ -158,11 +157,11 @@ function markdown_modules_installed($modules) {
 function markdown_preprocess_installable_library(&$variables) {
   /** @var \Drupal\markdown\Plugin\Markdown\InstallablePluginInterface $plugin */
   $plugin = $variables['plugin'];
-  $variables['installedLibrary'] = $installedLibrary = $plugin->getInstalledLibrary();
+  $variables['installedLibrary'] = $plugin->getInstalledLibrary();
   $variables['preferredLibrary'] = $preferredLibrary = $plugin->getPreferredLibrary();
 
   /** @var \Drupal\markdown\Annotation\InstallableLibrary|null $library */
-  $library = isset($variables['library']) ? $variables['library'] : NULL;
+  $library = $variables['library'] ?? NULL;
   $lib = $library ?: $preferredLibrary;
 
   $variables['id'] = $lib ? $lib->getId() : '';
@@ -172,7 +171,7 @@ function markdown_preprocess_installable_library(&$variables) {
   $variables['status'] = $lib ? $lib->getStatus() : NULL;
   $variables['statusTitle'] = $lib ? $lib->getStatus(TRUE) : NULL;
 
-  $variables['isMultiple'] = $multiple = $plugin && count($plugin->getPluginDefinition()->libraries) > 1;
+  $variables['isMultiple'] = $multiple = count($plugin->getPluginDefinition()->libraries) > 1;
   $variables['isBundled'] = $plugin instanceof ExtensionInterface && $plugin->isBundled();
   $variables['isPreferred'] = $multiple && $library->preferred;
 

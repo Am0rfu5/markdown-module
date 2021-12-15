@@ -95,7 +95,7 @@ class FootnoteExtension extends BaseExtension implements AllowedHtmlInterface, P
    * {@inheritdoc}
    */
   public static function defaultSettings($pluginDefinition) {
-    /* @var \Drupal\markdown\Annotation\InstallablePlugin $pluginDefinition */
+    /** @var \Drupal\markdown\Annotation\InstallablePlugin $pluginDefinition */
 
     // Immediately return if not using the newer bundled extension.
     if ($pluginDefinition->object === 'RZ\\CommonMark\\Ext\\Footnote\\FootnoteExtension') {
@@ -137,7 +137,7 @@ class FootnoteExtension extends BaseExtension implements AllowedHtmlInterface, P
           $this->t('There is a known bug that prevents footnote identifiers from being rendered properly due to aggressive XSS filtering. There is a <a href=":issue" target="_blank">temporary workaround</a>, but you must manually implement it in a custom module. It is highly recommended that you instead upgrade to a newer version of CommonMark (1.5+) which includes a new bundled Footnotes extension where these settings are customizable.', [
             ':issue' => 'https://www.drupal.org/project/markdown/issues/3131224#comment-13613381',
           ]),
-        ]
+        ],
       ]);
       return $element;
     }

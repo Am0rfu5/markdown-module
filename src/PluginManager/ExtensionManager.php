@@ -112,7 +112,7 @@ class ExtensionManager extends InstallablePluginManager implements ExtensionMana
   protected function createObjectRequirement(InstallablePlugin $definition, InstallableLibrary $library) {
     $objectRequirement = parent::createObjectRequirement($definition, $library);
     $id = $objectRequirement->constraints['Installed']['name'];
-    /* @var \Drupal\markdown\PluginManager\ParserManagerInterface $parserManager */
+    /** @var \Drupal\markdown\PluginManager\ParserManagerInterface $parserManager */
     $parserManager = \Drupal::service('plugin.manager.markdown.parser');
     $parser = $parserManager->getDefinitionByLibraryId($id);
     foreach ($library->requirements as $requirement) {

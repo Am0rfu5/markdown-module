@@ -3,11 +3,8 @@
 namespace Drupal\markdown\Plugin\Markdown;
 
 use Drupal\Core\Config\Schema\Mapping;
-use Drupal\markdown\Annotation\InstallableLibrary;
-use Drupal\markdown\Annotation\InstallablePlugin;
 use Drupal\markdown\PluginManager\ExtensionManager;
 use Drupal\markdown\Traits\EnabledPluginTrait;
-use Drupal\markdown\Util\ParserAwareInterface;
 use Symfony\Component\Validator\Context\ExecutionContextInterface;
 
 /**

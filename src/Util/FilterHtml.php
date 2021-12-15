@@ -201,7 +201,7 @@ class FilterHtml extends CoreFilterHtml implements ParserAwareInterface {
     if (!$html || strpos($html, '<') === FALSE) {
       return $tags;
     }
-    libxml_use_internal_errors(true);
+    libxml_use_internal_errors(TRUE);
     $dom = new \DOMDocument();
     $dom->loadHTML($html);
     libxml_clear_errors();

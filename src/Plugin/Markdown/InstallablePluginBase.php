@@ -3,7 +3,6 @@
 namespace Drupal\markdown\Plugin\Markdown;
 
 use Drupal\Component\Plugin\PluginInspectionInterface;
-use Drupal\Component\Utility\DiffArray;
 use Drupal\Component\Utility\NestedArray;
 use Drupal\Component\Utility\UrlHelper;
 use Drupal\Core\Config\Config;
@@ -226,7 +225,7 @@ abstract class InstallablePluginBase extends AnnotatedPluginBase implements Inst
   /**
    * {@inheritdoc}
    *
-   * @TODO: Refactor to use variadic parameters.
+   * @todo Refactor to use variadic parameters.
    */
   public function getObject($args = NULL, $_ = NULL) {
     if ($class = $this->getObjectClass()) {

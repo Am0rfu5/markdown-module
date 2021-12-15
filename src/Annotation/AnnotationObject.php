@@ -14,7 +14,7 @@ use Drupal\Core\DependencyInjection\DependencySerializationTrait;
  * @todo Move upstream to https://www.drupal.org/project/installable_plugins
  *   or as a separate project https://www.drupal.org/project/annotation_object.
  *
- * @property \Drupal\markdown\Annotation\Identifier $id
+ * @property Identifier $id
  */
 abstract class AnnotationObject extends AnnotationBase implements \ArrayAccess, \IteratorAggregate, PluginDefinitionInterface {
 
@@ -378,7 +378,7 @@ abstract class AnnotationObject extends AnnotationBase implements \ArrayAccess, 
   /**
    * Helper method for validating the definition identifier.
    *
-   * @param \Drupal\markdown\Annotation\Identifier $id
+   * @param Identifier $id
    *   The identifier to validate.
    */
   protected function validateIdentifier(Identifier $id) {

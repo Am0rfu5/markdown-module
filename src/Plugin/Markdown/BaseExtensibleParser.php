@@ -2,7 +2,6 @@
 
 namespace Drupal\markdown\Plugin\Markdown;
 
-use Drupal\Component\Plugin\LazyPluginCollection;
 use Drupal\Component\Plugin\PluginInspectionInterface;
 use Drupal\markdown\PluginManager\ExtensionCollection;
 use Drupal\markdown\Util\SortArray;

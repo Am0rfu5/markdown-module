@@ -17,7 +17,7 @@ class SubformState extends CoreSubformState implements SubformStateInterface {
   }
 
   /**
-   * {@inheritdoc
+   * {@inheritdoc}
    */
   protected function __construct(array &$subform, array &$parent_form, FormStateInterface $parent_form_state) {
     $this->decoratedFormState = $parent_form_state;
@@ -26,7 +26,7 @@ class SubformState extends CoreSubformState implements SubformStateInterface {
   }
 
   /**
-   * {@inheritdoc
+   * {@inheritdoc}
    */
   public function conditionalElement(array $element, $state, $name, array $conditions) {
     $element += ['#type' => 'html_tag'];

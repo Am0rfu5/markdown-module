@@ -60,7 +60,7 @@ class PhpMarkdown extends BaseParser implements AllowedHtmlInterface, SettingsIn
    * {@inheritdoc}
    */
   public static function defaultSettings($pluginDefinition) {
-    /* @var \Drupal\markdown\Annotation\InstallablePlugin $pluginDefinition */
+    /** @var \Drupal\markdown\Annotation\InstallablePlugin $pluginDefinition */
     return [
       'empty_element_suffix' => ' />',
       'enhanced_ordered_list' => FALSE,
