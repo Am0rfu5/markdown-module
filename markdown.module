@@ -175,6 +175,11 @@ function markdown_preprocess_installable_library(&$variables) {
   $variables['isBundled'] = $plugin instanceof ExtensionInterface && $plugin->isBundled();
   $variables['isPreferred'] = $multiple && $library->preferred;
 
+  if (!$lib) {
+    $variables['label'] = t('Library is missing');
+    return;
+  }
+  
   $label = ($lib->customLabel ?: $lib->label ?: $lib->getId());
   if ($lib->version) {
     $label .= ':' . ($lib->versionExtra ?: $lib->version);
