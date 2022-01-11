@@ -150,7 +150,7 @@ class ParsedMarkdown implements ParsedMarkdownInterface {
    */
   public function getSize($formatted = FALSE, $decimals = 2) {
     if ($this->size === NULL) {
-      $this->size = Unicode::strlen($this->getHtml());
+      $this->size = mb_strlen($this->getHtml());
     }
     return $formatted ? number_format($this->size, $decimals) : $this->size;
   }
