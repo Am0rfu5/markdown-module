@@ -129,6 +129,31 @@ function markdown_migration_plugins_alter(array &$migrations) {
 
     // Add mapping from filter_markdown to markdown for D7 migrations.
     $migration['process']['filters']['process']['id']['map']['filter_markdown'] = 'markdown';
+
+    // Copied from https://www.drupal.org/project/migmag.
+    // @see \Drupal\migmag\Utility\MigMagMigrationUtility::getAssociativeMigrationProcess()
+    $get_associative_migration_process = function($process_pipeline): array {
+      if (is_string($process_pipeline)) {
+        return [['plugin' => 'get', 'source' => $process_pipeline]];
+      }
+      elseif (array_key_exists('plugin', $process_pipeline)) {
+        $process_pipeline = [$process_pipeline];
+      }
+
+      return $process_pipeline;
+    };
+
+    // We have to generate settings for the markdown filter.
+    $filter_plugin_settings_processes = $get_associative_migration_process($migrations['d7_filter_format']['process']['filters']['process']['settings']);
+    $filter_plugin_settings_processes[] = [
+      'plugin' => 'markdown_settings_generator',
+    ];
+    $migrations['d7_filter_format']['process']['filters']['process']['settings'] = $filter_plugin_settings_processes;
+
+    // markdown_settings_generator needs to know the other filters that
+    // enabled in order to generate valid settings.
+    $migrations['d7_filter_format']['process']['filters']['include_source'] = TRUE;
+    $migrations['d7_filter_format']['process']['filters']['source_key'] = 'source_format';
   }
 }
 
