@@ -96,7 +96,7 @@ class ParsedMarkdown implements ParsedMarkdownInterface {
   /**
    * {@inheritdoc}
    */
-  public function count() {
+  public function count(): int {
     return $this->getSize();
   }
 
@@ -158,7 +158,7 @@ class ParsedMarkdown implements ParsedMarkdownInterface {
   /**
    * {@inheritdoc}
    */
-  public function jsonSerialize() {
+  public function jsonSerialize(): string {
     return $this->__toString();
   }
 
@@ -183,18 +183,7 @@ class ParsedMarkdown implements ParsedMarkdownInterface {
    * {@inheritdoc}
    */
   public function serialize() {
-    $data['object'] = serialize(get_object_vars($this));
-
-    // Determine if PHP has gzip capabilities.
-    $data['gzip'] = extension_loaded('zlib');
-
-    // Compress and encode the markdown and html output.
-    if ($data['gzip']) {
-      /* @noinspection PhpComposerExtensionStubsInspection */
-      $data['object'] = base64_encode(gzencode($data['object'], 9));
-    }
-
-    return serialize($data);
+    return serialize($this->__serialize());
   }
 
   /**
@@ -226,7 +215,25 @@ class ParsedMarkdown implements ParsedMarkdownInterface {
    */
   public function unserialize($serialized) {
     $data = unserialize($serialized);
+    $this->__unserialize($data);
+  }
 
+  public function __serialize(): array {
+    $data['object'] = serialize(get_object_vars($this));
+
+    // Determine if PHP has gzip capabilities.
+    $data['gzip'] = extension_loaded('zlib');
+
+    // Compress and encode the markdown and html output.
+    if ($data['gzip']) {
+      /* @noinspection PhpComposerExtensionStubsInspection */
+      $data['object'] = base64_encode(gzencode($data['object'], 9));
+    }
+
+    return $data;
+  }
+
+  public function __unserialize(array $data): void {
     // Data was gzipped.
     if ($data['gzip']) {
       // Decompress data if PHP has gzip capabilities.

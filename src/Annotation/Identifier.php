@@ -207,7 +207,7 @@ class Identifier implements MarkupInterface {
   /**
    * {@inheritdoc}
    */
-  public function jsonSerialize() {
+  public function jsonSerialize(): string {
     return $this->value;
   }
 

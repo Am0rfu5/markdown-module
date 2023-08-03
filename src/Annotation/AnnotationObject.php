@@ -244,7 +244,7 @@ abstract class AnnotationObject extends AnnotationBase implements \ArrayAccess, 
   /**
    * {@inheritdoc}
    */
-  public function getIterator() {
+  public function getIterator(): \Traversable {
     $iterator = new \ArrayIterator($this);
     foreach ($this->_deprecated as $key => $value) {
       $iterator->offsetSet($key, $value);
@@ -303,7 +303,7 @@ abstract class AnnotationObject extends AnnotationBase implements \ArrayAccess, 
   /**
    * {@inheritdoc}
    */
-  public function offsetExists($offset) {
+  public function offsetExists($offset): bool {
     if (array_key_exists($offset, $this->_deprecatedProperties)) {
       return isset($this->_deprecated[$offset]);
     }
@@ -312,7 +312,10 @@ abstract class AnnotationObject extends AnnotationBase implements \ArrayAccess, 
 
   /**
    * {@inheritdoc}
+   *
+   * @todo add "mixed" return type as soon as Drupal 9.5 is no longer supported.
    */
+  #[\ReturnTypeWillChange]
   public function &offsetGet($offset) {
     $value = NULL;
     if (array_key_exists($offset, $this->_deprecatedProperties)) {
@@ -330,7 +333,7 @@ abstract class AnnotationObject extends AnnotationBase implements \ArrayAccess, 
   /**
    * {@inheritdoc}
    */
-  public function offsetSet($offset, $value = NULL) {
+  public function offsetSet($offset, $value = NULL): void {
     if (array_key_exists($offset, $this->_deprecatedProperties)) {
       $this->_deprecated[$offset] = $this->normalizeValue($value);
       $this->triggerDeprecation($offset);
@@ -343,7 +346,7 @@ abstract class AnnotationObject extends AnnotationBase implements \ArrayAccess, 
   /**
    * {@inheritdoc}
    */
-  public function offsetUnset($offset) {
+  public function offsetUnset($offset): void {
     if (array_key_exists($offset, $this->_deprecatedProperties)) {
       unset($this->_deprecated[$offset]);
     }

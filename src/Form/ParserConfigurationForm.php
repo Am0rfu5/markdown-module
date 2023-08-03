@@ -32,6 +32,7 @@ use Drupal\markdown\Traits\ParserAwareTrait;
 use Drupal\markdown\Util\FilterAwareInterface;
 use Drupal\markdown\Util\FilterFormatAwareInterface;
 use Drupal\markdown\Util\FilterHtml;
+use Drupal\markdown\Util\FormHelper;
 use Drupal\markdown\Util\ParserAwareInterface;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 
@@ -644,7 +645,7 @@ class ParserConfigurationForm extends FormBase implements FilterAwareInterface, 
       ],
     ];
     $renderStrategySubform['custom_allowed_html']['#description'] = $this->moreInfo($renderStrategySubform['custom_allowed_html']['#description'], RenderStrategyInterface::DOCUMENTATION_URL);
-    FormTrait::resetToDefault($renderStrategySubform['custom_allowed_html'], 'custom_allowed_html', '', $renderStrategySubformState);
+    FormHelper::resetToDefault($renderStrategySubform['custom_allowed_html'], 'custom_allowed_html', '', $renderStrategySubformState);
     $renderStrategySubformState->addElementState($renderStrategySubform['custom_allowed_html'], 'visible', 'type', ['value' => RenderStrategyInterface::FILTER_OUTPUT]);
 
     return $element;

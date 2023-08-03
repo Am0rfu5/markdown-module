@@ -5,6 +5,7 @@ namespace Drupal\markdown\Traits;
 use Drupal\Component\Utility\DiffArray;
 use Drupal\Component\Utility\NestedArray;
 use Drupal\Core\Form\FormStateInterface;
+use Drupal\markdown\Util\FormHelper;
 use Drupal\markdown\Util\SortArray;
 
 /**
@@ -70,10 +71,10 @@ trait SettingsTrait {
           $defaultValue = $return;
         }
       }
-      FormTrait::resetToDefault($element, $name, $defaultValue, $form_state);
+      FormHelper::resetToDefault($element, $name, $defaultValue, $form_state);
     }
 
-    return [$name => FormTrait::createElement($element)];
+    return [$name => FormHelper::createElement($element)];
   }
 
   /**

@@ -12,6 +12,7 @@ use Drupal\markdown\Plugin\Markdown\ParserInterface;
 use Drupal\markdown\Plugin\Markdown\SettingsInterface;
 use Drupal\markdown\Traits\FormTrait;
 use Drupal\markdown\Traits\SettingsTrait;
+use Drupal\markdown\Util\FormHelper;
 use Drupal\markdown\Util\KeyValuePipeConverter;
 
 /**
@@ -107,7 +108,7 @@ class ExternalLinkExtension extends BaseExtension implements AllowedHtmlInterfac
       '#description' => $this->t('Defines a whitelist of hosts which are considered non-external and should not receive the external link treatment. This can be a single host name, like <code>example.com</code>, which must match exactly. Wildcard matching is also supported using regular expression like <code>/(^|\.)example\.com$/</code>. Note that you must use <code>/</code> characters to delimit your regex. By default, if no internal hosts are provided, all links will be considered external. One host per line.'),
     ], $form_state, '\Drupal\markdown\Util\KeyValuePipeConverter::denormalizeNoKeys');
 
-    $element['token'] = FormTrait::createTokenBrowser();
+    $element['token'] = FormHelper::createTokenBrowser();
 
     $element += $this->createSettingElement('html_class', [
       '#type' => 'textfield',
