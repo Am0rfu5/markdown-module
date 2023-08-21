@@ -2,6 +2,7 @@
 
 namespace Drupal\markdown\Plugin\Markdown\CommonMark\Extension;
 
+use League\CommonMark\Extension\HeadingPermalink\HeadingPermalinkRenderer;
 use Drupal\Core\Form\FormStateInterface;
 use Drupal\Core\Plugin\PluginFormInterface;
 use Drupal\Core\Theme\ActiveTheme;
@@ -51,7 +52,7 @@ class HeadingPermalinkExtension extends BaseExtension implements AllowedHtmlInte
     $innerContents = '';
     if (defined('\\League\\CommonMark\\Extension\\HeadingPermalink\\HeadingPermalinkRenderer::DEFAULT_INNER_CONTENTS')) {
       /* @noinspection PhpFullyQualifiedNameUsageInspection */
-      $innerContents = \League\CommonMark\Extension\HeadingPermalink\HeadingPermalinkRenderer::DEFAULT_INNER_CONTENTS; // phpcs:ignore
+      $innerContents = HeadingPermalinkRenderer::DEFAULT_INNER_CONTENTS; // phpcs:ignore
     }
 
     return [

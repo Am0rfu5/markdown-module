@@ -2,7 +2,7 @@ name: 'Markdown'
 type: module
 description: 'Provides APIs and services to parse Markdown, a simple plain-text syntax, into valid HTML.'
 package: 'Markdown'
-core_version_requirement: ^8 || ^9
+core_version_requirement: ^9.1 || ^10
 configure: markdown.overview
 dependencies:
   - drupal:filter

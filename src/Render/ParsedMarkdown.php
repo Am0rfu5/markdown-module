@@ -108,7 +108,7 @@ class ParsedMarkdown implements ParsedMarkdownInterface {
 
     // Handle relative time.
     if (is_string($expire)) {
-      $expire = strtotime($expire, $from_time ?: REQUEST_TIME);
+      $expire = strtotime($expire, $from_time ?: \Drupal::time()->getRequestTime());
     }
 
     return $expire;

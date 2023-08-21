@@ -28,7 +28,7 @@ class MissingParserTest extends MarkdownKernelTestBase {
   /**
    * {@inheritdoc}
    */
-  protected function setUp() {
+  protected function setUp(): void {
     parent::setUp();
 
     $this->parser = $this->container->get('plugin.manager.markdown.parser')

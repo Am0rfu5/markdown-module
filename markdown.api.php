@@ -1,5 +1,7 @@
 <?php
 
+use Drupal\markdown\Plugin\Markdown\PhpMarkdown\PhpMarkdownExtra;
+use Drupal\Component\Utility\Crypt;
 /**
  * @file
  * Hooks and alters provided by the Markdown module.
@@ -86,7 +88,7 @@ function hook_markdown_compatible_filters_alter(array &$compatibleFilters) {
 function hook_markdown_html_alter(&$html, array $context) {
   // Ignore non PHP Markdown Extra parsers.
   $parser = $context['parser'];
-  if (!($parser instanceof \Drupal\markdown\Plugin\Markdown\PhpMarkdown\PhpMarkdownExtra)) {
+  if (!($parser instanceof PhpMarkdownExtra)) {
     return;
   }
 
@@ -96,7 +98,7 @@ function hook_markdown_html_alter(&$html, array $context) {
   if ($phpMarkdown->omit_footnotes && $phpMarkdown->footnotes_assembled) {
     // Create a hash based on the contents of the HTML output.
     // This can be used as the lookup identifier to load the footnotes later.
-    $hash = \Drupal\Component\Utility\Crypt::hashBase64($html);
+    $hash = Crypt::hashBase64($html);
     \Drupal::keyValue('my_module.markdown.footnotes')->set($hash, $phpMarkdown->footnotes_assembled);
   }
 }

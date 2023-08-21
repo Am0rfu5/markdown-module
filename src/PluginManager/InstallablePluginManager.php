@@ -8,9 +8,10 @@ use Drupal\Core\Cache\CacheBackendInterface;
 use Drupal\Core\Config\ConfigFactoryInterface;
 use Drupal\Core\Extension\ModuleHandlerInterface;
 use Drupal\Core\Plugin\DefaultPluginManager;
+use Drupal\Core\Routing\RouteObjectInterface;
 use Drupal\Core\StringTranslation\StringTranslationTrait;
-use Drupal\markdown\Annotation\InstallablePlugin;
 use Drupal\markdown\Annotation\InstallableLibrary;
+use Drupal\markdown\Annotation\InstallablePlugin;
 use Drupal\markdown\Annotation\InstallableRequirement;
 use Drupal\markdown\Exception\MarkdownUnexpectedValueException;
 use Drupal\markdown\Traits\NormalizeTrait;
@@ -19,7 +20,6 @@ use Drupal\markdown\Util\Error;
 use Drupal\markdown\Util\Semver;
 use Drupal\markdown\Util\SortArray;
 use Psr\Log\LoggerInterface;
-use Symfony\Cmf\Component\Routing\RouteObjectInterface;
 use Symfony\Component\DependencyInjection\ContainerAwareInterface;
 use Symfony\Component\DependencyInjection\ContainerAwareTrait;
 use Symfony\Component\DependencyInjection\ContainerInterface;
@@ -359,7 +359,10 @@ abstract class InstallablePluginManager extends DefaultPluginManager implements 
   /**
    * {@inheritdoc}
    */
-  abstract public function getFallbackPluginId($plugin_id = NULL, array $configuration = []);
+  public function getFallbackPluginId($plugin_id, array $configuration = []) {
+    // This can not be abstract, but this is the next best thing.
+    throw new \BadMethodCallException(get_class() . '::getFallbackPluginId() not implemented.');
+  }
 
   /**
    * Retrieves the runtime definitions.

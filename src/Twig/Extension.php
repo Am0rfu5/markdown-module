@@ -3,11 +3,15 @@
 namespace Drupal\markdown\Twig;
 
 use Drupal\markdown\MarkdownInterface;
+use Twig\Extension\AbstractExtension;
+use Twig\Extension\GlobalsInterface;
+use Twig\TwigFilter;
+use Twig\TwigFunction;
 
 /**
  * Twig Markdown Extension.
  */
-class Extension extends \Twig_Extension implements \Twig_Extension_GlobalsInterface {
+class Extension extends AbstractExtension implements GlobalsInterface {
 
   /**
    * An instance of a markdown processor to use.
@@ -33,7 +37,7 @@ class Extension extends \Twig_Extension implements \Twig_Extension_GlobalsInterf
   /**
    * {@inheritdoc}
    */
-  public function getGlobals() {
+  public function getGlobals(): array {
     return [
       'markdown' => $this->markdown,
     ];
@@ -44,7 +48,7 @@ class Extension extends \Twig_Extension implements \Twig_Extension_GlobalsInterf
    */
   public function getFilters() {
     return [
-      'markdown' => new \Twig_SimpleFilter('markdown', [$this->markdown, 'parse'], ['is_safe' => ['html']]),
+      'markdown' => new TwigFilter('markdown', [$this->markdown, 'parse'], ['is_safe' => ['html']]),
     ];
   }
 
@@ -53,7 +57,7 @@ class Extension extends \Twig_Extension implements \Twig_Extension_GlobalsInterf
    */
   public function getFunctions() {
     return [
-      'markdown' => new \Twig_SimpleFunction('markdown', [$this->markdown, 'parse'], ['is_safe' => ['html']]),
+      'markdown' => new TwigFunction('markdown', [$this->markdown, 'parse'], ['is_safe' => ['html']]),
     ];
   }
 

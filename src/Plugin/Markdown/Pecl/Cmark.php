@@ -2,6 +2,8 @@
 
 namespace Drupal\markdown\Plugin\Markdown\Pecl;
 
+use function CommonMark\Parse;
+use function CommonMark\Render\HTML;
 use Drupal\Core\Language\LanguageInterface;
 use Drupal\markdown\Plugin\Markdown\AllowedHtmlInterface;
 use Drupal\markdown\Plugin\Markdown\BaseParser;
@@ -35,8 +37,8 @@ class Cmark extends BaseParser implements AllowedHtmlInterface {
     try {
       if (is_string($markdown)) {
         // NOTE: these are functions, not classes.
-        $node = \CommonMark\Parse($markdown);
-        return \CommonMark\Render\HTML($node);
+        $node = Parse($markdown);
+        return HTML($node);
       }
     }
     catch (\Exception $e) {

@@ -132,7 +132,7 @@ class MarkdownCommands extends DrushCommands implements ContainerInjectionInterf
    *   The temporary directory path.
    */
   protected function createTempDir() {
-    $tempDir = 'temporary://markdown_' . REQUEST_TIME . Crypt::randomBytesBase64(10);
+    $tempDir = 'temporary://markdown_' . \Drupal::time()->getRequestTime() . Crypt::randomBytesBase64(10);
     if (!is_dir($tempDir) && $this->fileSystem->prepareDirectory($tempDir, FileSystemInterface::CREATE_DIRECTORY | FileSystemInterface::MODIFY_PERMISSIONS)) {
       $tempDir = $this->fileSystem->realpath($tempDir);
       static::$tempDirs[] = $tempDir;

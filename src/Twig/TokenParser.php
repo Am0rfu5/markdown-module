@@ -4,11 +4,12 @@ namespace Drupal\markdown\Twig;
 
 use Drupal\markdown\MarkdownInterface;
 use Twig\Token;
+use Twig\TokenParser\AbstractTokenParser;
 
 /**
  * Twig Markdown Token Parser.
  */
-class TokenParser extends \Twig_TokenParser {
+class TokenParser extends AbstractTokenParser {
 
   /**
    * An instance of a markdown processor to use.
@@ -30,11 +31,11 @@ class TokenParser extends \Twig_TokenParser {
   public function parse(Token $token) {
     $tag = $this->getTag();
     $line = $token->getLine();
-    $this->parser->getStream()->expect(\Twig_Token::BLOCK_END_TYPE);
-    $body = $this->parser->subparse(function (\Twig_Token $token) use ($tag) {
+    $this->parser->getStream()->expect(Token::BLOCK_END_TYPE);
+    $body = $this->parser->subparse(function (Token $token) use ($tag) {
       return $token->test("end$tag");
     }, TRUE);
-    $this->parser->getStream()->expect(\Twig_Token::BLOCK_END_TYPE);
+    $this->parser->getStream()->expect(Token::BLOCK_END_TYPE);
     return new Node($body, $line, $tag);
   }
 

@@ -3,23 +3,24 @@
 namespace Drupal\markdown\Twig;
 
 use Twig\Compiler;
+use Twig\Node\Node as TwigNode;
 
 /**
  * Twig Markdown Node.
  */
-class Node extends \Twig_Node {
+class Node extends TwigNode {
 
   /**
    * Node constructor.
    *
-   * @param \Twig_Node $value
+   * @param TwigNode $value
    *   The value.
    * @param int $line
    *   The line number.
    * @param string $tag
    *   The tag.
    */
-  public function __construct(\Twig_Node $value, $line, $tag = NULL) {
+  public function __construct(TwigNode $value, $line, $tag = NULL) {
     parent::__construct(['value' => $value], ['name' => $tag], $line, $tag);
   }
 

@@ -2,6 +2,7 @@
 
 namespace Drupal\markdown\Traits;
 
+use function GuzzleHttp\default_user_agent;
 /**
  * Trait to assist with creating an HTTP client using module info as user-agent.
  *
@@ -51,7 +52,7 @@ trait HttpClientTrait {
       $httpClientFactory = \Drupal::service('http_client_factory');
       static::$httpClient = $httpClientFactory->fromOptions([
         'headers' => [
-          'User-Agent' => $extension . ' Drupal/' . \Drupal::VERSION . ' (+https://www.drupal.org/) ' . \GuzzleHttp\default_user_agent(),
+          'User-Agent' => $extension . ' Drupal/' . \Drupal::VERSION . ' (+https://www.drupal.org/) ' . default_user_agent(),
         ],
       ]);
     }

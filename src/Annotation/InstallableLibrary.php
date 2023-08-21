@@ -491,17 +491,17 @@ class InstallableLibrary extends AnnotationObject {
       }
 
       // Create a cacheable response.
-      $cacheableResponse = CacheableResponse::create($content, $statusCode, $response->getHeaders());
+      $cacheableResponse = new CacheableResponse($content, $statusCode, $response->getHeaders());
 
       // Cache response in the database. The TTL value defaults to one day,
       // but allow it to be overrideable via settings.
       $ttl = Settings::get('installable_library_request_ttl', 86400);
-      $cache->set($cid, $cacheableResponse, REQUEST_TIME + $ttl);
+      $cache->set($cid, $cacheableResponse, \Drupal::time()->getRequestTime() + $ttl);
     }
     catch (GuzzleException $exception) {
       \Drupal::logger('markdown')->warning('%type: @message in %function (line %line of %file).<pre><code>@backtrace_string</code></pre>', Error::decodeException($exception));
       $this->requestException = $exception;
-      $cacheableResponse = CacheableResponse::create($exception->getMessage(), 500);
+      $cacheableResponse = new CacheableResponse($exception->getMessage(), 500);
     }
 
     return $cacheableResponse;
