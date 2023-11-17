@@ -25,6 +25,11 @@ abstract class InstallablePlugin extends AnnotationObject {
   public $libraries = [];
 
   /**
+   * Internal marker to ensure required dependencies are enabled.
+   */
+  public $_requiredBy;
+
+  /**
    * Retrieves the installed library or plugin identifier.
    *
    * @return string
