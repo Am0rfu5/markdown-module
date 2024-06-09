@@ -107,6 +107,7 @@
       var $context = $(context);
 
       var $wrapper = $context.find('[data-markdown-element="wrapper"]');
+      // 
       $wrapper.once('markdown-summary').each(function () {
         // Vertical tab summaries.
         var $inputs = $(this).find(':input[data-markdown-summary]');

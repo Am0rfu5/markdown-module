@@ -3,8 +3,9 @@
 namespace Drupal\markdown\Form;
 
 use Drupal\Component\Serialization\Json;
+use Drupal\Core\Form\FormInterface;
 use Drupal\Core\Form\FormStateInterface;
-use Drupal\markdown\BcSupport\SubformState as CoreSubformState;
+use Drupal\Core\Form\SubformState as CoreSubformState;
 use Drupal\markdown\Traits\FormTrait;
 
 /**
@@ -54,7 +55,7 @@ class SubformState extends CoreSubformState implements SubformStateInterface {
   /**
    * {@inheritdoc}
    */
-  public static function createForSubform(array &$subform, array &$parent_form, FormStateInterface $parent_form_state) {
+  public static function createForSubform(array &$subform, array &$parent_form, FormStateInterface $parent_form_state, ?FormInterface $subform_form_object = null) {
     // Attempt to construct #parents array based on passed values.
     if (!isset($subform['#parents']) && $parent_form_state instanceof SubformStateInterface && ($name = array_search($subform, $parent_form, TRUE))) {
       $subform['#parents'] = array_merge($parent_form_state->getAllParents(), [$name]);

@@ -2,7 +2,7 @@
 
 namespace Drupal\markdown\Form;
 
-use Drupal\markdown\BcSupport\SubformStateInterface as CoreSubformStateInterface;
+use Drupal\Core\Form\SubformStateInterface as CoreSubformStateInterface;
 
 /**
  * Interface for markdown plugin subforms.
